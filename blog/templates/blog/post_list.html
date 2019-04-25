@@ -1,19 +1,33 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-BR" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Tutorial de Django!</title>
+    <title>PQNE</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" rel="stylesheet">
   </head>
   <body>
-    <div>
-      <h1><a href="/">Blog do Alcides</a></h1>
+    <header>
+      <h1><a href="/" class="bold">Poemas que ninguém entende</a></h1>
+    </header>
+
+    <div class="content container">
+        <div class="row">
+            <div class="col-md-8">
+                {% for post in posts %}
+                    <div class="post">
+                        <div class="date">
+                            <p>published: {{ post.published_date }}</p>
+                        </div>
+                        <h1><a href="">{{ post.title }}</a></h1>
+                        <p>{{ post.text|linebreaksbr }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
-    {% for post in posts %}
-      <div class="">
-        <p>publicado em: {{ post.published_date }}</p>
-        <h1><a href="">{{ post.title }}</a></h1>
-        <p>{{ post.text|linebreaksbr }}</p>
-      </div>
-    {% endfor %}
   </body>
 </html>
